@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import authRouter from './routes/authRoutes.js';
 import nodemailer from 'nodemailer'
 import userRouter from './routes/userRoutes.js';
+import listingRouter from './routes/listingRoutes.js';
 
 
 dotenv.config()
@@ -38,12 +39,13 @@ app.use(cors({origin:allowedOrigins, credentials: true }))
 
 
 app.get('/',(req,res)=>{
-    res.send('Hello World I am live')
+    res.send('Sunshine here we at')
 })
 
 
 app.use('/api/auth',authRouter)
 app.use('/api/user',userRouter)
+app.use('/api/listing',listingRouter)
 
 app.listen(port, () => {
     console.log(`server is running on port ${port}`);

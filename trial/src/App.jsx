@@ -8,6 +8,7 @@ import Header from './components/Header';
 import EmailVerify from './pages/EmailVerify';
 import ResetPassword from './pages/ResetPassword';
 import { AppContextProvider } from './context/AppContext';
+import CreateListing from './pages/CreateListing';
 
 export default function App() {
   return (
@@ -21,7 +22,7 @@ export default function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/email-verify" element={<EmailVerify />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/create-listing" element={<CreateListing />} />
         </Routes>
       </AppContextProvider>
     </BrowserRouter>
