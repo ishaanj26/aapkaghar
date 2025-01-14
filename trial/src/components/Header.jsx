@@ -22,7 +22,7 @@ export default function Header() {
         console.log(data.message)
       }
 
-    } catch (e) { 
+    } catch (e) {
       console.log(e)
     }
   }
@@ -84,9 +84,12 @@ export default function Header() {
               <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10'>
                 <ul className='list-none m-0 p-2 bg-gray-100 text-sm'>
                   {!userData.isAccountVerified && <li onClick={sendVerificationOtp} className='py-1 px-2 hover:bg-gray-200 cursor-pointer'>Verify Email</li>}
-                  <li onClick={()=>{
+                  <li onClick={() => {
+                    navigate("/my-listings")
+                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Show Listings</li>
+                  <li onClick={() => {
                     navigate("/create-listing")
-                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Listings</li>
+                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Create Listings</li>
                   <li onClick={logout} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Logout</li>
                 </ul>
               </div>

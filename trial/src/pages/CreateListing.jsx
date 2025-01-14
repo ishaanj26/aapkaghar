@@ -158,10 +158,8 @@ export default function CreateListing() {
         }
     };
     return (
-        <main className='p-3 max-w-4xl mx-auto'>
-            <h1 className='text-3xl font-semibold text-center my-4'>
-                Create a Listing
-            </h1>
+        <main className='p-6 bg-gray-100 max-w-4xl mx-auto'>
+            <h3 className="text-2xl font-bold mb-4">Create a List</h3>
             <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-3'>
                 <div className='flex flex-col gap-3 flex-1'>
                     <input
