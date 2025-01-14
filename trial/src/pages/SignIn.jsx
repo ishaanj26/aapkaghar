@@ -2,18 +2,14 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AppContent } from '../context/AppContext';
+import {toast} from 'react-toastify'
 
 export default function SignIn() {
     const navigate = useNavigate();
-    const [error, setError] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const {setIsLoggedIn,getUserData,userData}=useContext(AppContent)
-
-    // useEffect(() => {
-    //     console.log("Data after updated ---->", userData);
-    //   }, [userData]);
       
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,11 +22,11 @@ export default function SignIn() {
                 navigate('/')
                 }
             else {
-                setError(data.message)
+                toast.error(data.message)
             }
-
+            
         } catch (error) {
-            console.error(error);
+            toast.error(error.message)
         }
     }
     return (
@@ -71,7 +67,6 @@ export default function SignIn() {
                 <span onClick={()=>navigate("/sign-up")} className='hover:cursor-pointer text-indigo-500'>Sign up</span>
 
             </div>
-            {error && <p className='text-red-500 mt-5'>{error}</p>}
         </div>
     )
 }

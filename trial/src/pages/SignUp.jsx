@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { AppContent } from "../context/AppContext";
+import {toast} from 'react-toastify'
 
 export default function SignUp() {
 
@@ -9,9 +10,8 @@ export default function SignUp() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
 
-    const { setIsLoggedIn, isLoggedIn,getUserData } = useContext(AppContent)
+    const { setIsLoggedIn,getUserData } = useContext(AppContent)
 
     const handleSubmit = async (e) => {
         e.preventDefault();//to prevent refereshing
@@ -25,7 +25,7 @@ export default function SignUp() {
                 navigate('/')
             }
             else {
-                setError(data.message)
+                toast.error(data.message)
             }
         } catch (e) {
             console.log(e)
@@ -70,7 +70,6 @@ export default function SignUp() {
                 <span onClick={() => navigate('/sign-in')} className='text-blue-700 hover:cursor-pointer'>Sign in</span>
 
             </div>
-            {error && <p className='text-red-500 mt-5'>{error}</p>}
         </div>
     )
 }
