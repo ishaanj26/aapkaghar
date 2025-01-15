@@ -8,6 +8,8 @@ export const AppContextProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userData, setUserData] = useState(false)
 
+    const [userListings, setUserListings] = useState(false)
+
     axios.defaults.withCredentials = true;
 
     const getAuthState = async () => {
@@ -35,9 +37,29 @@ export const AppContextProvider = (props) => {
         }
     }
 
+    const getUserListings = async () => {
+        try {
+            const { data } = await axios.get(`${backendURL}/api/user/listings/${userData._id}`)
+            if (data.success) {
+                setUserListings(data.listings)
+            }
+            else console.log(data.message)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
+
     useEffect(() => {
         getAuthState()
     }, [])
+
+    useEffect(() => {
+        if (userData) {
+            getUserListings()
+        }
+    }, [userData]);
 
     const value = {
         backendURL,
@@ -46,7 +68,10 @@ export const AppContextProvider = (props) => {
         userData,
         setUserData,
         getUserData,
-        getAuthState
+        getAuthState,
+        getUserListings,
+        userListings,
+        setUserListings
     }
     return (
         <AppContent.Provider value={value}>
