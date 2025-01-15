@@ -21,6 +21,22 @@ export const getUserData = async (req, res) => {
     }
 }
 
+export const getUser = async (req, res) => {
+    try {
+        const user = await userModel.findById(req.params.id);
+        if (!user) {
+            return res.json({ success: false, message: `User not found.Please try again.. ` });
+        }
+        const {password:pass,...rest}=user._doc
+        res.json({
+            success: true,
+            rest
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching user details" });
+    }
+}
+
 export const getUserListings = async (req, res) => {
     const { userId } = req.body;
     try {
