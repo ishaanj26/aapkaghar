@@ -7,6 +7,7 @@ export const AppContextProvider = (props) => {
     const backendURL = "http://localhost:3000"
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userData, setUserData] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [userListings, setUserListings] = useState(false)
 
@@ -69,9 +70,10 @@ export const AppContextProvider = (props) => {
         setUserData,
         getUserData,
         getAuthState,
-        getUserListings,
         userListings,
-        setUserListings
+        setUserListings,
+        loading, 
+        setLoading
     }
     return (
         <AppContent.Provider value={value}>

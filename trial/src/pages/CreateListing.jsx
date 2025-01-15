@@ -27,8 +27,7 @@ export default function CreateListing() {
         parking: false,
         furnished: false,
     });
-    console.log(formData)
-    console.log(userData._id)
+
     const [imageUploadError, setImageUploadError] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(false);
@@ -49,11 +48,6 @@ export default function CreateListing() {
                         ...formData,
                         images: formData.images.concat(urls),
                     });
-                    // fixing the bug
-                    // setFormData((prevFormData) => ({
-                    //     ...prevFormData,
-                    //     images: prevFormData.images.concat(urls),
-                    // }));
                     setImageUploadError(false);
                     setUploading(false);
                 })

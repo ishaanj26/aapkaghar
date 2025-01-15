@@ -7,7 +7,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 
 export default function Header() {
-  const { userData, setUserData, setIsLoggedIn } = useContext(AppContent)
+  const { backendURL, userData, setUserListings, getUserListings, setUserData, setIsLoggedIn } = useContext(AppContent)
   const navigate = useNavigate()
 
   const sendVerificationOtp = async () => {
@@ -38,6 +38,23 @@ export default function Header() {
       }
       else {
         console.log(data.message)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const handleShowListings = async () => {
+    try {
+      axios.defaults.withCredentials = true
+      const { data } = await axios.get(`${backendURL}/api/user/listings/${userData._id}`)
+
+      if (data.success) {
+        setUserListings(data.listings)
+        navigate("/my-listings")
+      }
+      else {
+        toast.error(data.message)
       }
     } catch (e) {
       console.log(e)
@@ -84,12 +101,13 @@ export default function Header() {
               <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10'>
                 <ul className='list-none m-0 p-2 bg-gray-100 text-sm'>
                   {!userData.isAccountVerified && <li onClick={sendVerificationOtp} className='py-1 px-2 hover:bg-gray-200 cursor-pointer'>Verify Email</li>}
-                  <li onClick={() => {
-                    navigate("/my-listings")
-                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Show Listings</li>
-                  <li onClick={() => {
+
+                  {userData.isAccountVerified && <li onClick={handleShowListings}
+                    className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Show Listings</li>}
+                  {userData.isAccountVerified && <li onClick={() => {
                     navigate("/create-listing")
-                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Create Listings</li>
+                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Create Listings</li>}
+
                   <li onClick={logout} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Logout</li>
                 </ul>
               </div>
