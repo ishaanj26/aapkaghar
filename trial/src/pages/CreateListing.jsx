@@ -158,13 +158,13 @@ export default function CreateListing() {
         }
     };
     return (
-        <main className='p-6 bg-gray-100 max-w-4xl mx-auto'>
+        <main className='p-6 bg-gray-100 mt-5  max-w-4xl mx-auto'>
             <h3 className="text-2xl font-bold mb-4">Create a List</h3>
             <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-3'>
                 <div className='flex flex-col gap-3 flex-1'>
                     <input
                         type='text'
-                        placeholder='Name'
+                        placeholder='Title'
                         className='border p-3 rounded-lg'
                         id='name'
                         maxLength='62'
@@ -270,7 +270,8 @@ export default function CreateListing() {
                             />
                             <p>Baths</p>
                         </div>
-                        <div className='flex items-center gap-2'>
+                        <div className='flex items-center gap-1'>
+                        <div className='flex items-center gap-1'>
                             <input
                                 type='number'
                                 id='regularPrice'
@@ -282,14 +283,14 @@ export default function CreateListing() {
                                 value={formData.regularPrice}
                             />
                             <div className='flex flex-col items-center'>
-                                <p>Regular price</p>
+                                <p className='text-s'>Regular price</p>
                                 {formData.type === 'rent' && (
                                     <span className='text-xs'>( ₹/month)</span>
                                 )}
                             </div>
                         </div>
                         {formData.offer && (
-                            <div className='flex items-center gap-2'>
+                            <div className='flex items-center gap-1'>
                                 <input
                                     type='number'
                                     id='discountedPrice'
@@ -308,6 +309,7 @@ export default function CreateListing() {
                                 </div>
                             </div>
                         )}
+                        </div>
                     </div>
                 </div>
                 <div className='flex flex-col flex-1 gap-4'>
