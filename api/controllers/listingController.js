@@ -10,6 +10,28 @@ export const createListing = async (req, res) => {
     }
 }
 
+export const updateListing = async (req, res) => {
+
+    const { userId } = req.body;
+
+    try {
+        const listing = await Listing.findById(req.params.id)
+        if (listing.userRef !== userId) {
+            return res.json({ success: false, message: "You can't update this listing.You are not authorized." });
+        }
+        else {
+            const updatedlist = await Listing.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        )
+        return res.json({ success: true, updatedlist });
+        }
+    } catch (e) {
+        return res.json({ success: false, message: `Listing not found...try again later` })
+    }
+}
+
 export const deleteListing = async (req, res) => {
     try {
         const { userId } = req.body;
