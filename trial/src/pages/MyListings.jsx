@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 export default function MyListings() {
-  const { userListings, loading, setLoading } = useContext(AppContent)
+  const { userListings,setUserListings} = useContext(AppContent)
   const navigate = useNavigate()
 
   if (!userListings) {
@@ -15,6 +15,21 @@ export default function MyListings() {
         <h3 className="sr-only">Loading...</h3>
       </div>
     </div>
+  }
+
+  const handleListingDelete = async (listingId) => {
+    try {
+      const {data} = await axios.delete(`http://localhost:3000/api/listing/delete/${listingId}`)
+      if (data.success) {
+        toast.success(data.message)
+        setUserListings((prev)=>prev.filter((listing) => listing._id !== listingId));
+      }
+      else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error)
+     }
   }
   return (
     <div>
@@ -45,7 +60,7 @@ export default function MyListings() {
                       <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
                         Edit
                       </button>
-                      <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                      <button onClick={() => handleListingDelete(listing._id)} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
                         Delete
                       </button>
                       <button onClick={(() => navigate(`../listing/${listing._id}`))} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
