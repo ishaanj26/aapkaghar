@@ -21,12 +21,27 @@ export const updateListing = async (req, res) => {
         }
         else {
             const updatedlist = await Listing.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        )
-        return res.json({ success: true, updatedlist });
+                req.params.id,
+                req.body,
+                { new: true }
+            )
+            return res.json({ success: true, updatedlist });
         }
+    } catch (e) {
+        return res.json({ success: false, message: `Listing not found...try again later` })
+    }
+}
+
+export const getListing = async (req, res) => {
+
+    const { userId } = req.body;
+
+    try {
+        const listing = await Listing.findById(req.params.id)
+        if (!listing) {
+            return res.json({ success: false, message: "No listings have been found" });
+        }
+        return res.json({ success: true, listing });
     } catch (e) {
         return res.json({ success: false, message: `Listing not found...try again later` })
     }

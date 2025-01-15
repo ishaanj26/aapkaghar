@@ -57,7 +57,9 @@ export default function MyListings() {
                     <p className="text-gray-800 font-medium mb-4">Location: {listing.address}</p>
 
                     <div className="flex gap-4">
-                      <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                      <button onClick={()=>{
+                        navigate(`../update-listing/${listing._id}`)
+                      }} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
                         Edit
                       </button>
                       <button onClick={() => handleListingDelete(listing._id)} className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
