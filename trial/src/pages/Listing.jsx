@@ -17,7 +17,7 @@ import { AppContent } from "../context/AppContext";
 import Contact from "../components/Contact";
 
 export default function Listing() {
-    const { userData } = useContext(AppContent)
+    const { userData,backendURL } = useContext(AppContent)
     SwiperCore.use([Navigation]);
     const params = useParams()
     const [listing, setListing] = useState(null)
@@ -31,7 +31,7 @@ export default function Listing() {
             try {
                 setLoading(true)
                 const listingId = params.listingId
-                const { data } = await axios.get(`http://localhost:3000/api/listing/get/${listingId}`,)
+                const { data } = await axios.get(`${backendURL}/api/listing/get/${listingId}`,)
                 if (data.success) {
                     setLoading(false)
                     setListing(data.listing)
@@ -139,7 +139,7 @@ export default function Listing() {
                             </li>
                         </ul>
                         {userData.isAccountVerified && 
-                        // listing.userRef !== userData._id &&
+                        listing.userRef !== userData._id &&
                          !contact && 
                         (
                             <button
