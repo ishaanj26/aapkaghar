@@ -22,7 +22,7 @@ export default function Bookmarks() {
             if (data.success) {
                 toast.success('Bookmark removed')
                 if (userData) {
-                    const updatedBookmarks= userData.bookmarks.filter((id) => id !== _id) // Remove the bookmark
+                    const updatedBookmarks = userData.bookmarks.filter((id) => id !== _id) // Remove the bookmark
                     getUserData({ ...userData, bookmarks: updatedBookmarks });
                 }
             }
@@ -34,7 +34,7 @@ export default function Bookmarks() {
         }
     };
 
-    return (
+    return (userData.isAccountVerified ?
         <div className="container mx-auto p-6">
             <div className="flex items-center">
                 <FaBookmark className="text-blue-800 mr-2" size={24} />
@@ -78,6 +78,8 @@ export default function Bookmarks() {
             ) : (
                 <p className="mt-10 text-gray-600">No bookmarked properties found.</p>
             )}
+        </div > : <div className="flex justify-center items-center h-screen">
+            <p className="m-auto text-gray-600">Please verify your account to create listings.</p>
         </div>
     );
 }

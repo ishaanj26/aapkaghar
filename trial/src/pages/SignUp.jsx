@@ -11,14 +11,14 @@ export default function SignUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const { setIsLoggedIn,getUserData } = useContext(AppContent)
+    const { setIsLoggedIn,getUserData,backendURL } = useContext(AppContent)
 
     const handleSubmit = async (e) => {
         e.preventDefault();//to prevent refereshing
         try {
             axios.defaults.withCredentials = true
 
-            const { data } = await axios.post('http://localhost:3000/api/auth/register', { name, email, password })
+            const { data } = await axios.post(`${backendURL}/api/auth/register`, { name, email, password })
             if (data.success) {
                 setIsLoggedIn(true)
                 getUserData()

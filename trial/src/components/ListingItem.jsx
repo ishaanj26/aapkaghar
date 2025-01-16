@@ -59,7 +59,7 @@ export default function ListingItem({ listing }) {
 
   return (
     <div className='bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px] relative'>
-      {userData && <div
+      {userData.isAccountVerified && <div
         className='absolute top-2 right-2 p-2 bg-white rounded-full cursor-pointer hover:bg-gray-100 z-10'
         onClick={toggleBookmark}
       >

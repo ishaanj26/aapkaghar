@@ -138,7 +138,7 @@ export default function CreateListing() {
             const { data } = await axios.post('http://localhost:3000/api/listing/create', { ...formData, userRef: userData._id })
             if (data.success) {
                 setLoading(false);
-                console.log("Navigating to",data.listing._id)
+                console.log("Navigating to", data.listing._id)
                 navigate(`/listing/${data.listing._id}`);
             }
             else {
@@ -151,7 +151,7 @@ export default function CreateListing() {
             setLoading(false);
         }
     };
-    return (
+    return (userData.isAccountVerified ?
         <main className='p-6 bg-gray-100 mt-5  max-w-4xl mx-auto'>
             <h3 className="text-2xl font-bold mb-4">Create a List</h3>
             <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-3'>
@@ -265,44 +265,44 @@ export default function CreateListing() {
                             <p>Baths</p>
                         </div>
                         <div className='flex items-center gap-1'>
-                        <div className='flex items-center gap-1'>
-                            <input
-                                type='number'
-                                id='regularPrice'
-                                min='50'
-                                max='10000000'
-                                required
-                                className='p-3 border border-gray-300 rounded-lg'
-                                onChange={handleChange}
-                                value={formData.regularPrice}
-                            />
-                            <div className='flex flex-col items-center'>
-                                <p className='text-s'>Regular price</p>
-                                {formData.type === 'rent' && (
-                                    <span className='text-xs'>( ₹/month)</span>
-                                )}
-                            </div>
-                        </div>
-                        {formData.offer && (
                             <div className='flex items-center gap-1'>
                                 <input
                                     type='number'
-                                    id='discountedPrice'
-                                    min='0'
+                                    id='regularPrice'
+                                    min='50'
                                     max='10000000'
+                                    required
                                     className='p-3 border border-gray-300 rounded-lg'
                                     onChange={handleChange}
-                                    value={formData.discountedPrice}
+                                    value={formData.regularPrice}
                                 />
                                 <div className='flex flex-col items-center'>
-                                    <p>Discounted price</p>
-
+                                    <p className='text-s'>Regular price</p>
                                     {formData.type === 'rent' && (
-                                        <span className='text-xs'>(₹/month)</span>
+                                        <span className='text-xs'>( ₹/month)</span>
                                     )}
                                 </div>
                             </div>
-                        )}
+                            {formData.offer && (
+                                <div className='flex items-center gap-1'>
+                                    <input
+                                        type='number'
+                                        id='discountedPrice'
+                                        min='0'
+                                        max='10000000'
+                                        className='p-3 border border-gray-300 rounded-lg'
+                                        onChange={handleChange}
+                                        value={formData.discountedPrice}
+                                    />
+                                    <div className='flex flex-col items-center'>
+                                        <p>Discounted price</p>
+
+                                        {formData.type === 'rent' && (
+                                            <span className='text-xs'>(₹/month)</span>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -367,6 +367,9 @@ export default function CreateListing() {
                     {error && <p className='text-red-700 text-sm'>{error}</p>}
                 </div>
             </form>
-        </main>
+        </main> :
+        <div className='flex justify-center items-center h-screen'>
+            < p className="m-auto text-gray-600">Please verify your account to create listings.</p>
+        </div>
     );
 }
