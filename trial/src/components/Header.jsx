@@ -1,4 +1,6 @@
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import { BsHouseDown } from 'react-icons/bs';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { assets } from '../assets/assets'
@@ -98,11 +100,6 @@ export default function Header() {
           </button>
         </form>
         <ul className='flex gap-4 items-center'>
-          <Link to='/'>
-            <li className='hidden sm:inline text-slate-700 hover:underline'>
-              Home
-            </li>
-          </Link>
           <Link to='/about'>
             <li className='hidden sm:inline text-slate-700 hover:underline'>
               About
@@ -112,20 +109,22 @@ export default function Header() {
             <div className="h-8 w-8 flex justify-center items-center rounded-full bg-black text-gray-200 relative group
                hover:bg-gray-800 cursor-pointer transition duration-300">
               {userData.name[0].toUpperCase()}
-              <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10'>
-                <ul className='list-none m-0 p-2 bg-gray-100 text-sm'>
-                  {!userData.isAccountVerified && <li onClick={sendVerificationOtp} className='py-1 px-2 hover:bg-gray-200 cursor-pointer'>Verify Email</li>}
+              <FaCaretUp className="absolute -bottom-2 -right-2 text-xl text-black z-20  group-hover:hidden " /> {/* Arrow up icon */}
+              <BsHouseDown className="absolute -bottom-1 -right-1 text-xs text-black z-20 hidden group-hover:block" />
+              <div className='absolute hidden group-hover:block top-9 right-0 z-10 bg-white rounded-lg shadow-xl overflow-hidden transition-all duration-300 transform translate-y-2 group-hover:translate-y-0'>
+                <ul className='list-none m-0 p-2 min-w-[160px]'>
+                  {!userData.isAccountVerified && <li onClick={sendVerificationOtp} className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Verify Email</li>}
 
                   {userData.isAccountVerified && <li onClick={handleShowListings}
-                    className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Show Listings</li>}
+                    className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Show Listings</li>}
                   {userData.isAccountVerified && <li onClick={() => {
                     navigate("/create-listing")
-                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Create Listings</li>}
+                  }} className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Create Listings</li>}
                   {userData.isAccountVerified && <li onClick={() => {
                     navigate("/bookmarks")
-                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Show BookMarks</li>}
+                  }} className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Show BookMarks</li>}
 
-                  <li onClick={logout} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Logout</li>
+                  <li onClick={logout} className='py-2 px-4 hover:bg-red-50 cursor-pointer text-sm text-red-600 rounded-md transition-colors duration-200'>Logout</li>
                 </ul>
               </div>
             </div>
