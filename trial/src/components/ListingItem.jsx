@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 export default function ListingItem({ listing }) {
 
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const { userData,getUserData } = useContext(AppContent);
+  const { userData,getUserData,backendURL } = useContext(AppContent);
   console.log("data---->", userData.bookmarks)
   // Fetch user's bookmarked listings and check if the current listing is bookmarked
 
@@ -33,8 +33,8 @@ export default function ListingItem({ listing }) {
     try {
       axios.defaults.withCredentials = true
       const endpoint = isBookmarked
-        ? 'http://localhost:3000/api/user/removeBookmark'
-        : 'http://localhost:3000/api/user/addBookMarks';
+        ? `${backendURL}/api/user/removeBookmark`
+        : `${backendURL}/api/user/addBookMarks`;
       const { data } = await axios.post(endpoint, { listingId: listing._id })
 
       if (data.success) {
