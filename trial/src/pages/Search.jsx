@@ -61,10 +61,10 @@ export default function Search() {
                 const { data } = await axios.get(`${backendURL}/api/listing/get?/${searchQuery}`)
                 if (data.success) {
                     if (data.length > 8) {
-                        setShowMore(false);
+                        setShowMore(true);
                     }
                     else{
-                        setShowMore(true);
+                        setShowMore(false);
                     }
                     setListings([...data.listings]);
                     setLoading(false);
@@ -136,7 +136,7 @@ export default function Search() {
         urlParams.set('startIndex', startIndex);
         const searchQuery = urlParams.toString();
         try {
-            const { data } = await axios.get(`${backendURL}/api/listing/get/${searchQuery}`)
+            const { data } = await axios.get(`${backendURL}/api/listing/get?/${searchQuery}`)
             if (data.success) {
                 if (data.length < 9) {
                     setShowMore(false);
@@ -276,7 +276,7 @@ export default function Search() {
                     {showMore && (
                         <button
                             onClick={onShowMoreClick}
-                            className='text-green-700 hover:underline p-7 text-center w-full'
+                            className='text-green-600 hover:text-green-900 hover:underline p-7 text-center w-full'
                         >
                             Show more
                         </button>
