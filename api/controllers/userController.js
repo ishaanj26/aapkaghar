@@ -14,6 +14,7 @@ export const getUserData = async (req, res) => {
                 name: user.name,
                 isAccountVerified: user.isAccountVerified,
                 _id: user._id,
+                bookmarks:user.bookmarks
             }
         });
     } catch (error) {
@@ -57,6 +58,38 @@ export const addBookMarks = async (req, res) => {
 
     } catch (e) {
         return res.json({ success: false, message: `Error bookmarking listing...try again later` })
+    }
+}
+
+export const removeBookmark = async (req, res) => {
+    const { userId, listingId } = req.body;
+
+    try {
+        // Find the user by userId
+        const user = await userModel.findById(userId);
+
+        // Check if the user exists
+        if (!user) {
+            return res.json({ success: false, message: `User  not found. Please try again.` });
+        }
+
+        // Check if the listing is in the user's bookmarks
+        if (!user.bookmarks.includes(listingId)) {
+            return res.json({ success: false, message: `Listing is not bookmarked.` });
+        }
+
+        // Remove the listing from the user's bookmarks
+        user.bookmarks = user.bookmarks.filter(bookmark => bookmark.toString() !== listingId);
+
+        // Save the updated user document
+        await user.save();
+
+        // Return success response
+        res.json({ success: true, message: `Listing removed from bookmarks successfully.` });
+
+    } catch (error) {
+        // Handle any errors
+        res.status(500).json({ success: false, message: `Error removing bookmark. Please try again later.` });
     }
 }
 

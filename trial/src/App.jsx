@@ -12,6 +12,7 @@ import MyListings from './pages/MyListings';
 import UpdateListing from './pages/UpdateListing';
 import Listing from './pages/Listing';
 import Search from './pages/Search';
+import Bookmarks from './pages/Bookmarks';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/update-listing/:listingId" element={<UpdateListing />} />
           <Route path="/my-listings" element={<MyListings />} />
           <Route path="/listing/:listingId" element={<Listing />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
         </Routes>
       </AppContextProvider>
     </BrowserRouter>

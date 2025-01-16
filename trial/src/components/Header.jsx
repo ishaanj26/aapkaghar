@@ -121,6 +121,9 @@ export default function Header() {
                   {userData.isAccountVerified && <li onClick={() => {
                     navigate("/create-listing")
                   }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Create Listings</li>}
+                  {userData.isAccountVerified && <li onClick={() => {
+                    navigate("/bookmarks")
+                  }} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Show BookMarks</li>}
 
                   <li onClick={logout} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Logout</li>
                 </ul>
