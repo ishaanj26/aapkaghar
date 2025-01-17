@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
+
 import {
     FaBath,
     FaBed,
@@ -17,8 +18,10 @@ import { AppContent } from "../context/AppContext";
 import Contact from "../components/Contact";
 
 export default function Listing() {
-    const { userData,backendURL } = useContext(AppContent)
-    SwiperCore.use([Navigation]);
+    const { userData, backendURL } = useContext(AppContent)
+
+    SwiperCore.use([Navigation, Pagination, Autoplay]);
+    
     const params = useParams()
     const [listing, setListing] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -59,7 +62,8 @@ export default function Listing() {
             )}
             {listing && !loading && !error && (
                 <div>
-                    <Swiper navigation>
+                    <Swiper navigation
+                        pagination={{ clickable: true }} autoplay={{ delay: 5000 }}>
                         {listing.images.map((url, index) => (
                             <SwiperSlide key={index}>
                                 <div
@@ -138,17 +142,17 @@ export default function Listing() {
                                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
                             </li>
                         </ul>
-                        {userData.isAccountVerified && 
-                        listing.userRef !== userData._id &&
-                         !contact && 
-                        (
-                            <button
-                                onClick={() => setContact(true)}
-                                className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
-                            >
-                                Contact landlord
-                            </button>
-                        )}
+                        {userData.isAccountVerified &&
+                            listing.userRef !== userData._id &&
+                            !contact &&
+                            (
+                                <button
+                                    onClick={() => setContact(true)}
+                                    className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
+                                >
+                                    Contact landlord
+                                </button>
+                            )}
                         {contact
                             && <Contact listing={listing} />
                         }

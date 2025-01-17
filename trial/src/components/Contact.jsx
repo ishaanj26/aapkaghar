@@ -8,8 +8,8 @@ export default function Contact({ listing }) {
   const onChange = (e) => {
     setMessage(e.target.value);
   };
-  
- useEffect(() => {
+
+  useEffect(() => {
     const fetchLandlord = async () => {
       try {
         axios.defaults.withCredentials = true
@@ -20,7 +20,7 @@ export default function Contact({ listing }) {
         else {
           console.log(data.message)
         }
-  
+
       } catch (e) {
         console.log(e)
       }
@@ -48,10 +48,10 @@ export default function Contact({ listing }) {
           ></textarea>
 
           <Link
-          to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
-          className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95'
+            to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
+            className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95'
           >
-            Send Message          
+            Send Message
           </Link>
         </div>
       )}
