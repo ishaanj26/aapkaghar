@@ -9,7 +9,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 
 export default function Header() {
-  const { backendURL, userData, setUserListings, getUserListings, setUserData, setIsLoggedIn } = useContext(AppContent)
+  const { backendURL, userData, setUserListings, setUserData, setIsLoggedIn } = useContext(AppContent)
   const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -63,6 +63,7 @@ export default function Header() {
       console.log(e)
     }
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const urlParams = new URLSearchParams(window.location.search)
@@ -70,11 +71,13 @@ export default function Header() {
     const searchQuery = urlParams.toString()
     navigate(`/search?${searchQuery}`)
   }
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const searchTermFromUrl = urlParams.get('searchTerm')
     if (searchTermFromUrl) setSearchTerm(searchTermFromUrl)
-  }, [])
+  }, [window.location.search])
+
   return (
     <header className='bg-slate-200 shadow-md'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>

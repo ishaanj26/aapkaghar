@@ -55,7 +55,8 @@ export default function EmailVerify() {
         isLoggedIn && userData && userData.isAccountVerified && navigate('/')
     }, [isLoggedIn, userData])
     return (
-        <div className="h-screen flex justify-center items-center bg-gray-100">
+    !userData.isAccountVerified?
+    <div className="h-screen flex justify-center items-center bg-gray-100">
             <div className="max-w-md w-full mx-auto bg-white p-8 rounded-lg shadow-md">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">Verify OTP</h2>
                 <p className="text-gray-600 mb-8">Enter the OTP sent to your email address.</p>
@@ -91,6 +92,10 @@ export default function EmailVerify() {
                     </a>
                 </p>
             </div>
-        </div>
+        </div>:<>
+        {
+        navigate("/")
+        }
+        </>
     );
 }
