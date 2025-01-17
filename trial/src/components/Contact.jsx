@@ -1,8 +1,10 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AppContent } from '../context/AppContext';
 
 export default function Contact({ listing }) {
+  const { backendURL } = useContext(AppContent)
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState('');
   const onChange = (e) => {
@@ -13,7 +15,7 @@ export default function Contact({ listing }) {
     const fetchLandlord = async () => {
       try {
         axios.defaults.withCredentials = true
-        const { data } = await axios.get(`http://localhost:3000/api/user/${listing.userRef}`)
+        const { data } = await axios.get(`${backendURL}/api/user/${listing.userRef}`)
         if (data.success) {
           setLandlord(data.rest)
         }

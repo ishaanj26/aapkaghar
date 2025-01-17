@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 export default function MyListings() {
-  const { userListings,setUserListings} = useContext(AppContent)
+  const { userListings,setUserListings,backendURL} = useContext(AppContent)
   const navigate = useNavigate()
 
   if (!userListings) {
@@ -19,7 +19,7 @@ export default function MyListings() {
 
   const handleListingDelete = async (listingId) => {
     try {
-      const {data} = await axios.delete(`http://localhost:3000/api/listing/delete/${listingId}`)
+      const {data} = await axios.delete(`${backendURL}/api/listing/delete/${listingId}`)
       if (data.success) {
         toast.success(data.message)
         setUserListings((prev)=>prev.filter((listing) => listing._id !== listingId));

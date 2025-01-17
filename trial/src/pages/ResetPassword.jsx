@@ -5,7 +5,7 @@ import { AppContent } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 export default function ResetPassword() {
-
+    const { backendURL } = useContext(AppContent)
     const navigate = useNavigate()
     axios.defaults.withCredentials = true
     const [email, setEmail] = useState("");
@@ -39,7 +39,7 @@ export default function ResetPassword() {
     const onSubmitEmail = async (e) => {
         e.preventDefault()
         try {
-            const { data } = await axios.post('http://localhost:3000/api/auth/send-reset-otp', { email })
+            const { data } = await axios.post(`${backendURL}/api/auth/send-reset-otp`, { email })
             if (data.success) {
                 toast.success(data.message)
                 setisEmailSent(true)
@@ -62,7 +62,7 @@ export default function ResetPassword() {
     const onSubmitNewPassword = async (e) => {
         e.preventDefault()
         try {
-            const { data } = await axios.post('http://localhost:3000/api/auth/reset-password', { email, otp, newPassword })
+            const { data } = await axios.post(`${backendURL}/api/auth/reset-password`, { email, otp, newPassword })
             if (data.success) {
                 toast.success(data.message)
                 navigate('/sign-in')

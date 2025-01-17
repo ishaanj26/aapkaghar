@@ -16,7 +16,7 @@ export default function Header() {
   const sendVerificationOtp = async () => {
     try {
       axios.defaults.withCredentials = true
-      const { data } = await axios.post('http://localhost:3000/api/auth/send-verify-otp')
+      const { data } = await axios.post(`${backendURL}/api/auth/send-verify-otp`)
       if (data.success) {
         toast.success(data.message)
         navigate('/email-verify')
@@ -33,7 +33,7 @@ export default function Header() {
   const logout = async () => {
     try {
       axios.defaults.withCredentials = true
-      const { data } = await axios.post('http://localhost:3000/api/auth/logout')
+      const { data } = await axios.post(`${backendURL}/api/auth/logout`)
       if (data.success) {
         setIsLoggedIn(false)
         setUserData(false)

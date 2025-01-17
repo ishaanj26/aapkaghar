@@ -8,7 +8,7 @@ export default function EmailVerify() {
 
     axios.defaults.withCredentials = true
     const inputRefs = React.useRef([])
-    const { isLoggedIn, getUserData, userData } = useContext(AppContent)
+    const { isLoggedIn, getUserData, userData,backendURL } = useContext(AppContent)
     const navigate = useNavigate();
 
     const handleInput = (e, index) => {
@@ -36,7 +36,7 @@ export default function EmailVerify() {
             e.preventDefault()
             const otpArray = inputRefs.current.map((e) => e.value)
             const otp = otpArray.join('')
-            const { data } = await axios.post('http://localhost:3000/api/auth/verify-account', { otp })
+            const { data } = await axios.post(`${backendURL}/api/auth/verify-account`, { otp })
             if (data.success) {
                 toast.success(data.message)
                 getUserData()

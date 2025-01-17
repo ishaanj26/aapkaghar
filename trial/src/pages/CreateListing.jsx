@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AppContent } from '../context/AppContext';
 
-const supabase = createClient('https://ifuxxfneemmedsgtconx.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmdXh4Zm5lZW1tZWRzZ3Rjb254Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY4ODQyMzIsImV4cCI6MjA1MjQ2MDIzMn0.pJB9kuutv8YrnTy0vOaeFfwauOXORw9NTL4yWistJKY');
 
 export default function CreateListing() {
-
-    const { userData } = useContext(AppContent)
+    
+    const { userData, supaAPIKey, supaURL } = useContext(AppContent)
+    const supabase = createClient(supaURL, supaAPIKey)
 
     const navigate = useNavigate();
     const [files, setFiles] = useState([]);

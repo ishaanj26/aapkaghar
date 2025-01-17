@@ -9,13 +9,13 @@ export default function SignIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const {setIsLoggedIn,getUserData,userData}=useContext(AppContent)
+    const {setIsLoggedIn,getUserData,userData,backendURL}=useContext(AppContent)
       
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             axios.defaults.withCredentials = true
-            const { data } = await axios.post('http://localhost:3000/api/auth/login', { email, password })
+            const { data } = await axios.post(`${backendURL}/api/auth/login`, { email, password })
             if (data.success) {
                 setIsLoggedIn(true)
                 getUserData()
