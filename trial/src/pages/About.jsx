@@ -9,6 +9,9 @@ export default function About() {
     const handleFormClose = () => {
         setIsFormVisible(false);
     };
+    const formSubmit = () => {
+
+    }
     return (
         <div className="bg-white shadow-md; max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
             <div className="text-center bg-gray-100 py-12">
@@ -60,12 +63,13 @@ export default function About() {
                             ×
                         </button>
                         <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
-                        <form>
+                        <form onSubmit={formSubmit}>
                             <div className="mb-4">
                                 <label className="block text-sm mb-2" htmlFor="name">
                                     Name
                                 </label>
                                 <input
+                                    required
                                     type="text"
                                     id="name"
                                     className="block w-full p-2 border border-gray-300 rounded"
@@ -76,6 +80,7 @@ export default function About() {
                                     Email
                                 </label>
                                 <input
+                                    required
                                     type="email"
                                     id="email"
                                     className="block w-full p-2 border border-gray-300 rounded"
@@ -86,6 +91,7 @@ export default function About() {
                                     Message
                                 </label>
                                 <textarea
+                                    required
                                     id="message"
                                     className="block w-full p-2 border border-gray-300 rounded"
                                     rows="3"
