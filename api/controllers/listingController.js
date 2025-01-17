@@ -79,7 +79,11 @@ export const getAllListingsforSearch = async (req, res) => {
         const order = req.query.order || 'desc'
 
         const listings = await Listing.find({
-            name: { $regex: searchTerm, $options: 'i' },
+            $or: [
+                { name: { $regex: searchTerm, $options: 'i' } },
+                { description: { $regex: searchTerm, $options: 'i' } },
+                { address: { $regex: searchTerm, $options: 'i' } }
+            ],
             offer, furnished, parking, type,
         }).sort({
             [sort]: order
