@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
@@ -12,10 +12,9 @@ export default function Home() {
     const [offerListings, setOfferListings] = useState([]);
     const [saleListings, setSaleListings] = useState([]);
     const [rentListings, setRentListings] = useState([]);
-    const {backendURL } = useContext(AppContent)
-    
-    SwiperCore.use([Navigation]);
-    console.log(offerListings);
+    const { backendURL } = useContext(AppContent)
+
+    SwiperCore.use([Navigation,Pagination,Autoplay]);
     useEffect(() => {
         const fetchOfferListings = async () => {
             try {
@@ -81,12 +80,14 @@ export default function Home() {
             </div>
 
             {/* swiper */}
-            <Swiper navigation>
+            <Swiper navigation 
+            pagination={{ clickable: true }} autoplay={{delay:5000}}
+             >
                 {offerListings &&
                     offerListings.length > 0 &&
                     offerListings.map((listing) => (
                         <SwiperSlide>
-                           <div
+                            <div
                                 style={{
                                     background: `url("${listing.images[0]}") center no-repeat`,
                                     backgroundSize: 'cover',
