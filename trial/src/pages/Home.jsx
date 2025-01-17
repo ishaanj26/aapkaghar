@@ -118,7 +118,11 @@ export default function Home() {
                     <div className=''>
                         <div className='my-3'>
                             <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-                            <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+                            <p onClick={() => {
+                                navigate('/search?offer=true')
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }
+                            } className='text-sm text-blue-800 hover:underline cursor-pointer'>Show more offers</p>
                         </div>
                         <div className='flex flex-wrap gap-4'>
                             {offerListings.map((listing) => (
@@ -131,7 +135,12 @@ export default function Home() {
                     <div className=''>
                         <div className='my-3'>
                             <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-                            <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+                            <p className='text-sm text-blue-800 hover:underline cursor-pointer' onClick={() => {
+                                {
+                                    navigate('/search?type=rent');
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }
+                            }} >Show more places for rent</p>
                         </div>
                         <div className='flex flex-wrap gap-4'>
                             {rentListings.map((listing) => (
