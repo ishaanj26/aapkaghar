@@ -13,10 +13,38 @@ export default function Home() {
     const [offerListings, setOfferListings] = useState([]);
     const [saleListings, setSaleListings] = useState([]);
     const [rentListings, setRentListings] = useState([]);
+    const [recentlyViewedListings, setRecentlyViewedListings] = useState([]);
+    const recentViewed = JSON.parse(localStorage.getItem('listingIds')) ||[]
     const { backendURL } = useContext(AppContent)
 
     SwiperCore.use([Navigation, Pagination, Autoplay]);
     const navigate = useNavigate()
+
+    const fetchListingData = async (recentViewed) => {
+        const listingData = [];
+
+        for (const listingId of recentViewed) {
+            try {
+                const response = await axios.get(`${backendURL}/api/listing/get/${listingId}`);
+                const data = response.data;
+                listingData.push(data);
+            } catch (error) {
+                console.error(`Error fetching listing data for ID ${listingId}:`, error);
+            }
+        }
+
+        return listingData;
+    };
+    useEffect(() => {
+        const fetchRecentlyViewedData = async () => {
+            const data = await fetchListingData(recentViewed);
+            setRecentlyViewedListings(data);
+        };
+        fetchRecentlyViewedData();
+    }, [recentViewed]);
+
+
+
     useEffect(() => {
         const fetchOfferListings = async () => {
             try {
@@ -111,9 +139,21 @@ export default function Home() {
                     ))}
             </Swiper>
 
-            {/* listing results for offer, sale and rent */}
-
             <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
+
+                {/* listing results for Recently Viewed Listings */}
+                {recentlyViewedListings && recentlyViewedListings.length > 0 && (
+                    <div>
+                        <div className='my-3'>
+                            <h2 className='text-2xl font-semibold text-slate-600'>Recently Viewed Listings</h2>
+                        </div>
+                        <div className='flex flex-wrap gap-4'>
+                            {recentlyViewedListings.map((listing) => (
+                                <ListingItem listing={listing.listing} key={listing._id} />
+                            ))}</div>
+                    </div>
+                )}
+                {/* listing results for offer, sale and rent */}
                 {offerListings && offerListings.length > 0 && (
                     <div className=''>
                         <div className='my-3'>

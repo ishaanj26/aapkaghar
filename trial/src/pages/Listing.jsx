@@ -21,7 +21,7 @@ export default function Listing() {
     const { userData, backendURL } = useContext(AppContent)
 
     SwiperCore.use([Navigation, Pagination, Autoplay]);
-    
+
     const params = useParams()
     const [listing, setListing] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -34,6 +34,27 @@ export default function Listing() {
             try {
                 setLoading(true)
                 const listingId = params.listingId
+                //Recently viewed
+                const existingListingIds = localStorage.getItem('listingIds');
+                console.log("EXISTING IDS ARE---->",existingListingIds)
+               
+                let listingIds = [];
+
+                if (existingListingIds) {
+                    listingIds = JSON.parse(existingListingIds);
+                }
+
+                if (listingIds.includes(listingId)) {
+                    listingIds.splice(listingIds.indexOf(listingId), 1);
+                }
+
+                listingIds.unshift(listingId);
+                if (listingIds.length > 4) {
+                    listingIds.pop();
+                }
+
+                localStorage.setItem('listingIds', JSON.stringify(listingIds));
+
                 const { data } = await axios.get(`${backendURL}/api/listing/get/${listingId}`,)
                 if (data.success) {
                     setLoading(false)
@@ -52,7 +73,7 @@ export default function Listing() {
             }
         }
         fetchListing()
-    }, [params.listingId])
+    }, [params.listingId, backendURL])
 
     return (
         <main>
