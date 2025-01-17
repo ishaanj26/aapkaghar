@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 export default function ResetPassword() {
 
     const navigate = useNavigate()
-    const { } = useContext(AppContent)
     axios.defaults.withCredentials = true
     const [email, setEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -76,7 +75,6 @@ export default function ResetPassword() {
             }
         } catch (e) {
             toast.error(e.message)
-            toast.error("Wrong Pssword 2")
         }
     }
 

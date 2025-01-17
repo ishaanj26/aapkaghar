@@ -111,7 +111,7 @@ export default function Header() {
               {userData.name[0].toUpperCase()}
               <FaCaretUp className="absolute -bottom-2 -right-2 text-xl text-black z-20  group-hover:hidden " /> {/* Arrow up icon */}
               <BsHouseDown className="absolute -bottom-1 -right-1 text-xs text-black z-20 hidden group-hover:block" />
-              <div className='absolute hidden group-hover:block top-9 right-0 z-10 bg-white rounded-lg shadow-xl overflow-hidden transition-all duration-300 transform translate-y-2 group-hover:translate-y-0'>
+              <div className='absolute hidden group-hover:block top-9 right-0 z-50 bg-white rounded-lg shadow-xl overflow-hidden transition-all duration-300 transform translate-y-2 group-hover:translate-y-0'>
                 <ul className='list-none m-0 p-2 min-w-[160px]'>
                   {!userData.isAccountVerified && <li onClick={sendVerificationOtp} className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Verify Email</li>}
 
