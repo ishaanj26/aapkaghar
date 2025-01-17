@@ -55,7 +55,11 @@ export default function CreateListing() {
                     setImageUploadError('Image upload failed (2 mb max per image)');
                     setUploading(false);
                 });
-        } else {
+        }
+        else if (files.length == 0) {
+            setImageUploadError('Please select at least one image');
+        }
+        else {
             setImageUploadError('You can only upload 6 images per listing');
             setUploading(false);
         }
@@ -142,12 +146,20 @@ export default function CreateListing() {
                 navigate(`/listing/${data.listing._id}`);
             }
             else {
-                setError(data.message);
+                if (data.message.includes('E11000 duplicate key error')) {
+                    setError('The address has been chosen, please choose a different address');
+                } else {
+                    setError(data.message);
+                }
                 setLoading(false);
             }
 
         } catch (error) {
-            setError(error.message);
+            if (error.message.includes('E11000 duplicate key error')) {
+                setError('The address has been chosen, please choose a different address');
+            } else {
+                setError(error.message);
+            }
             setLoading(false);
         }
     };
