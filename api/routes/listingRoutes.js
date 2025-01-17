@@ -9,6 +9,6 @@ listingRouter.post('/update/:id', userAuth, updateListing)
 listingRouter.delete('/delete/:id', userAuth, deleteListing)
 listingRouter.get('/get/:id', getListing)
 listingRouter.get('/get', getAllListingsforSearch)
-listingRouter.get('/getAllListings', AllListingsforBookMark)
+listingRouter.post('/getAllListings', AllListingsforBookMark)
 
 export default listingRouter

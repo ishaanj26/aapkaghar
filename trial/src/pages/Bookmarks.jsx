@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaTrash, FaMapMarkerAlt, FaDollarSign, FaBookmark } from "react-icons/fa"; // Importing icons from react-icons library
 import { AppContent } from "../context/AppContext";
 import { Link } from "react-router-dom";
@@ -7,10 +7,25 @@ import { toast } from 'react-toastify';
 
 export default function Bookmarks() {
 
-    const { userData, userListings, getUserData, backendURL } = useContext(AppContent);
+    const { userData, getUserData, backendURL } = useContext(AppContent);
+    const [bookmarkedList, setBookmarkedList] = useState('')
 
-    const bookmarkedProperties = userListings
-        ? userListings.filter(listing => userData.bookmarks.includes(listing._id))
+    useEffect(() => {
+        const fetchBookMarkListings = async () => {
+            try {
+                const { data } = await axios.post(`${backendURL}/api/listing/getAllListings`, { bookmarkIds: userData.bookmarks })
+                console.log("THE DATA IS---->", data)
+                if (data.success)
+                    setBookmarkedList(data.listings)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        fetchBookMarkListings()
+    }, [[userData.bookmarks]])
+
+    const bookmarkedProperties = bookmarkedList
+        ? bookmarkedList
         : [];
 
     // Sample data for bookmarked properties
