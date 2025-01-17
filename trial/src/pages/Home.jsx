@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import ListingItem from '../components/ListingItem';
 import axios from 'axios';
 import { AppContent } from '../context/AppContext';
@@ -88,7 +89,7 @@ export default function Home() {
                     offerListings.length > 0 &&
                     offerListings.map((listing) => (
                         <SwiperSlide>
-                            <div onClick={()=>{navigate(`/listing/${listing._id}`)}}
+                            <div onClick={() => { navigate(`/listing/${listing._id}`) }}
                                 style={{
                                     background: `url("${listing.images[0]}") center no-repeat`,
                                     backgroundSize: 'cover',
@@ -99,7 +100,10 @@ export default function Home() {
                                 <div className='absolute bottom-0 left-0 w-full p-4 bg-gray-900 bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition duration-300 '>
                                     <h3 className='text-lg font-bold'>{listing.name}</h3>
                                     <p className='text-sm'>{listing.description}</p>
-                                    <p className='text-sm'>{listing.address}</p>
+                                    <span className=''>
+                                        <FaMapMarkerAlt className='mr-1 inline-block' />
+                                        <span className='text-sm'>{listing.address}</span>
+                                    </span>
                                 </div>
 
                             </div>

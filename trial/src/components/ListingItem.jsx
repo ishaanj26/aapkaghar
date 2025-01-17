@@ -9,8 +9,6 @@ export default function ListingItem({ listing }) {
 
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { userData,getUserData,backendURL } = useContext(AppContent);
-  console.log("data---->", userData.bookmarks)
-  // Fetch user's bookmarked listings and check if the current listing is bookmarked
 
   useEffect(() => {
     const checkIfBookmarked = async () => {
