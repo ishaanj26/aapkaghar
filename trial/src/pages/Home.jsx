@@ -14,7 +14,7 @@ export default function Home() {
     const [saleListings, setSaleListings] = useState([]);
     const [rentListings, setRentListings] = useState([]);
     const [recentlyViewedListings, setRecentlyViewedListings] = useState([]);
-    const recentViewed = JSON.parse(localStorage.getItem('listingIds')) ||[]
+    const recentViewed = JSON.parse(localStorage.getItem('listingIds')) || []
     const { backendURL } = useContext(AppContent)
 
     SwiperCore.use([Navigation, Pagination, Autoplay]);
@@ -109,9 +109,7 @@ export default function Home() {
                 </Link>
             </div>
 
-            {/* swiper */}
-            <Swiper navigation
-                pagination={{ clickable: true }} autoplay={{ delay: 5000 }}
+            <Swiper navigation={{ clickable: true }} pagination={{ clickable: true }} autoplay={{ delay: 5000 }} loop={true}
             >
                 {offerListings &&
                     offerListings.length > 0 &&
@@ -122,7 +120,7 @@ export default function Home() {
                                     background: `url("${listing.images[0]}") center no-repeat`,
                                     backgroundSize: 'cover',
                                 }}
-                                className='h-[500px] relative group hover:cursor-pointer'
+                                className='h-[500px] relative group'
                                 key={listing._id}
                             >
                                 <div className='absolute bottom-0 left-0 w-full p-4 bg-gray-900 bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition duration-300 '>

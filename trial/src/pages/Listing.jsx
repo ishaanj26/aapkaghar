@@ -84,7 +84,7 @@ export default function Listing() {
             {listing && !loading && !error && (
                 <div>
                     <Swiper navigation
-                        pagination={{ clickable: true }} autoplay={{ delay: 5000 }}>
+                        pagination={{ clickable: true }} autoplay={{ delay: 5000 }} loop={true}>
                         {listing.images.map((url, index) => (
                             <SwiperSlide key={index}>
                                 <div
