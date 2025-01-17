@@ -29,6 +29,14 @@ export default function SignIn() {
             toast.error(error.message)
         }
     }
+
+        // Redirect to profile if user is already logged in
+        useEffect(() => {
+            if (userData) {
+                navigate('/profile');
+            }
+        }, [userData, navigate]);
+
     return (
         <div className='p-3 max-w-lg mx-auto'>
             <h1 className='text-3xl text-center font-semibold my-7'>Log In</h1>

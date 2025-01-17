@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { AppContent } from "../context/AppContext";
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 export default function SignUp() {
 
@@ -11,7 +11,7 @@ export default function SignUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const { setIsLoggedIn,getUserData,backendURL } = useContext(AppContent)
+    const { setIsLoggedIn, getUserData, backendURL, userData } = useContext(AppContent)
 
     const handleSubmit = async (e) => {
         e.preventDefault();//to prevent refereshing
@@ -31,7 +31,12 @@ export default function SignUp() {
             console.log(e)
         }
     }
-
+    // Redirect to profile if user is already logged in
+    useEffect(() => {
+        if (userData) {
+            navigate('/profile');
+        }
+    }, [userData, navigate]);
     return (
         <div className='p-3 max-w-lg mx-auto'>
             <h1 className='text-3xl text-center font-semibold my-7'>Create your Account</h1>

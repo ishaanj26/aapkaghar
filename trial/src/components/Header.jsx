@@ -121,6 +121,9 @@ export default function Header() {
                     navigate("/create-listing")
                   }} className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Create Listings</li>}
                   {userData.isAccountVerified && <li onClick={() => {
+                    navigate("/profile")
+                  }} className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Show My Profile</li>}
+                  {userData.isAccountVerified && <li onClick={() => {
                     navigate("/bookmarks")
                   }} className='py-2 px-4 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 rounded-md transition-colors duration-200'>Show BookMarks</li>}
 
