@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import SwiperCore from 'swiper';
@@ -14,7 +14,8 @@ export default function Home() {
     const [rentListings, setRentListings] = useState([]);
     const { backendURL } = useContext(AppContent)
 
-    SwiperCore.use([Navigation,Pagination,Autoplay]);
+    SwiperCore.use([Navigation, Pagination, Autoplay]);
+    const navigate = useNavigate()
     useEffect(() => {
         const fetchOfferListings = async () => {
             try {
@@ -80,21 +81,28 @@ export default function Home() {
             </div>
 
             {/* swiper */}
-            <Swiper navigation 
-            pagination={{ clickable: true }} autoplay={{delay:5000}}
-             >
+            <Swiper navigation
+                pagination={{ clickable: true }} autoplay={{ delay: 5000 }}
+            >
                 {offerListings &&
                     offerListings.length > 0 &&
                     offerListings.map((listing) => (
                         <SwiperSlide>
-                            <div
+                            <div onClick={()=>{navigate(`/listing/${listing._id}`)}}
                                 style={{
                                     background: `url("${listing.images[0]}") center no-repeat`,
                                     backgroundSize: 'cover',
                                 }}
-                                className='h-[500px]'
+                                className='h-[500px] relative group hover:cursor-pointer'
                                 key={listing._id}
-                            ></div>
+                            >
+                                <div className='absolute bottom-0 left-0 w-full p-4 bg-gray-900 bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition duration-300 '>
+                                    <h3 className='text-lg font-bold'>{listing.name}</h3>
+                                    <p className='text-sm'>{listing.description}</p>
+                                    <p className='text-sm'>{listing.address}</p>
+                                </div>
+
+                            </div>
                         </SwiperSlide>
                     ))}
             </Swiper>
