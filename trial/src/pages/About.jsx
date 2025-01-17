@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function About() {
+    const [isFormVisible, setIsFormVisible] = useState(false);
+
+    const handleContactClick = () => {
+        setIsFormVisible(true);
+    };
+    const handleFormClose = () => {
+        setIsFormVisible(false);
+    };
     return (
         <div className="bg-white shadow-md; max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
             <div className="text-center bg-gray-100 py-12">
@@ -38,8 +46,61 @@ export default function About() {
                 <div className="bg-gray-100 text-center py-12">
                     <h2 className="text-3xl font-bold mb-4 text-gray-900">Get Started Today</h2>
                     <p className="text-lg mb-8 text-gray-600">Contact us to learn more about our services and how we can help you find your dream property.</p>
-                    <button className=" cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Contact Us</button>
+                    <button onClick={handleContactClick} className=" cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Contact Us</button>
                 </div>
+                {isFormVisible && (
+                    <div
+                        className={`fixed bottom-0 right-0 bg-white shadow-md p-4 w-1/2 md:w-1/3 lg:w-1/4 transition-all duration-500 ${isFormVisible ? "translate-x-0" : "-translate-x-full"
+                            }`}
+                    >
+                        <button
+                            className="absolute top-4 right-4 cursor-pointer"
+                            onClick={handleFormClose}
+                        >
+                            ×
+                        </button>
+                        <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
+                        <form>
+                            <div className="mb-4">
+                                <label className="block text-sm mb-2" htmlFor="name">
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    className="block w-full p-2 border border-gray-300 rounded"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm mb-2" htmlFor="email">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    className="block w-full p-2 border border-gray-300 rounded"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm mb-2" htmlFor="message">
+                                    Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    className="block w-full p-2 border border-gray-300 rounded"
+                                    rows="3"
+                                    style={{ resize: "none" }}
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            >
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                )}
             </div>
         </div>
     );
