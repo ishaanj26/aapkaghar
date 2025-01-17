@@ -94,20 +94,20 @@ export const getAllListingsforSearch = async (req, res) => {
 }
 
 export const AllListingsforBookMark = async (req, res) => {
-//     try {
-//         const { bookmarkIds } = req.body; // Array of listing IDs from the user's bookmark list
-//         if (!bookmarkIds || bookmarkIds.length === 0) {
-//             return res.json({ success: false, message: "No bookmark IDs provided" });
-//         }
-//         const listings = await Listing.find({ _id: { $in: bookmarkIds } });
+    try {
+        const { bookmarkIds } = req.body; // Array of listing IDs from the user's bookmark list
+        if (!bookmarkIds || bookmarkIds.length === 0) {
+            return res.json({ success: false, message: "No bookmark IDs provided" });
+        }
+        const listings = await Listing.find({ _id: { $in: bookmarkIds } });
 
-//         if (!listings || listings.length === 0) {
-//             return res.json({ success: false, message: "No listings found for the provided bookmark IDs" });
-//         }
-//         return res.json({ success: true, listings });
-//     } catch (e) {
-//         return res.json({ success: false, message: `Listing not found...try again later` })
-//     }
+        if (!listings || listings.length === 0) {
+            return res.json({ success: false, message: "No listings found for the provided bookmark IDs" });
+        }
+        return res.json({ success: true, listings });
+    } catch (e) {
+        return res.json({ success: false, message: `Listing not found...try again later` })
+    }
 }
 
 export const deleteListing = async (req, res) => {
