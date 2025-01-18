@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import { assets } from '../assets/assets'
 import { AppContent } from '../context/AppContext';
 import axios from 'axios'
+import logo from '../assets/akg2.png'
 import { toast } from 'react-toastify';
 
 export default function Header() {
@@ -82,11 +83,7 @@ export default function Header() {
     <header className='bg-slate-200 shadow-md'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
-          <img src={assets.logo} alt="" />
-          <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-            <span className='text-slate-500'>GoodLuck</span>
-            <span className='text-slate-700'>Logistics</span>
-          </h1>
+          <img src={logo} className="w-24 h-auto" alt="" />
         </Link>
         <form
           onSubmit={handleSubmit}
@@ -103,15 +100,25 @@ export default function Header() {
           </button>
         </form>
         <ul className='flex gap-4 items-center'>
+          <Link to='/'>
+            <li className='hidden sm:inline text-slate-700 hover:underline'>
+              Home
+            </li>
+          </Link>
           <Link to='/about'>
             <li className='hidden sm:inline text-slate-700 hover:underline'>
               About
             </li>
           </Link>
+          <Link to='/about'>
+            <li className='hidden sm:inline text-slate-700 hover:underline'>
+              Listings
+            </li>
+          </Link>
           {userData ?
             <div className="h-8 w-8 flex justify-center items-center rounded-full bg-black text-gray-200 relative group
                hover:bg-gray-800 cursor-pointer transition duration-300">
-              {userData.avatar ? <img src={userData.avatar} alt="User Avatar" className='rounded-full'/> : userData.name[0].toUpperCase()}
+              {userData.avatar ? <img src={userData.avatar} alt="User Avatar" className='rounded-full' /> : userData.name[0].toUpperCase()}
               <FaCaretUp className="absolute -bottom-2 -right-2 text-xl text-black z-20  group-hover:hidden " /> {/* Arrow up icon */}
               <BsHouseDown className="absolute -bottom-1 -right-1 text-xs text-black z-20 hidden group-hover:block" />
               <div className='absolute hidden group-hover:block top-9 right-0 z-50 bg-white rounded-lg shadow-xl overflow-hidden transition-all duration-300 transform translate-y-2 group-hover:translate-y-0'>
