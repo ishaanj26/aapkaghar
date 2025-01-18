@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-export default function OAuth() {
+export default function OAuth({type}) {
     const { setIsLoggedIn, getUserData, userData, backendURL } = useContext(AppContent)
     const navigate = useNavigate()
     const handleGoogleClick = async () => {
@@ -33,7 +33,7 @@ export default function OAuth() {
 
     }
     return (
-        <button onClick={handleGoogleClick} type='button' className="bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95">OAuth</button>
+        <button onClick={handleGoogleClick} type='button' className="bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95">{type=='sign-in'?"Log In with Google":"Create Account with Google"}</button>
 
     )
 }

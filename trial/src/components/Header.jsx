@@ -111,7 +111,7 @@ export default function Header() {
           {userData ?
             <div className="h-8 w-8 flex justify-center items-center rounded-full bg-black text-gray-200 relative group
                hover:bg-gray-800 cursor-pointer transition duration-300">
-              {userData.name[0].toUpperCase()}
+              {userData.avatar ? <img src={userData.avatar} alt="User Avatar" className='rounded-full'/> : userData.name[0].toUpperCase()}
               <FaCaretUp className="absolute -bottom-2 -right-2 text-xl text-black z-20  group-hover:hidden " /> {/* Arrow up icon */}
               <BsHouseDown className="absolute -bottom-1 -right-1 text-xs text-black z-20 hidden group-hover:block" />
               <div className='absolute hidden group-hover:block top-9 right-0 z-50 bg-white rounded-lg shadow-xl overflow-hidden transition-all duration-300 transform translate-y-2 group-hover:translate-y-0'>

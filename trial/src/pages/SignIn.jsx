@@ -68,7 +68,7 @@ export default function SignIn() {
                     className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
                 > Sign In
                 </button>
-                <OAuth />
+                <OAuth type='sign-in' />
                 <p onClick={() => navigate('/reset-password')} className='mb-4 text-indigo-500 hover:cursor-pointer'>Forgot Password?</p>
 
             </form>
