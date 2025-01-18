@@ -37,6 +37,9 @@ const userSchema = new mongoose.Schema({
     bookmarks: {
         type: Array,
         required: false
+    },
+    avatar: {
+        type: String
     }
 });
 
