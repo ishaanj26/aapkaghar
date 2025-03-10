@@ -1,0 +1,43 @@
+.gotodiv {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.top-btn {
+    font-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    background-color: rgb(128, 128, 185);
+    /* box-shadow: ${({ theme }) => theme.colors.shadow}; */
+    border-radius: 50%;
+    position: fixed;
+    bottom: 2rem;
+    right: 0.2rem;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.top-btn:hover{
+    background-color: rgb(97, 97, 140);
+}
+
+.top-btn--icon {
+    animation: gototop 1.1s linear infinite alternate-reverse;
+}
+
+@keyframes gototop {
+    0% {
+        transform: translateY(-0.5rem);
+    }
+
+    100% {
+        transform: translateY(0.5rem);
+    }
+}
