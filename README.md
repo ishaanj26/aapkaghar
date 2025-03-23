@@ -21,3 +21,53 @@ To set up the project locally, follow these steps:
 ```sh
 git clone https://github.com/your-username/AapKaGhar.git
 cd AapKaGhar
+```
+
+### 2. Install Dependencies
+
+Run the following command in both `api` and `client` folders to install the required node modules:
+
+```bash
+npm install
+```
+
+### 3. Running the Server
+
+Navigate to the `api` folder and start the backend server:
+
+```bash
+npm run server
+```
+
+### 4. Running the Client
+
+Navigate to the `client` folder and start the frontend:
+
+```bash
+cd client
+npm start
+```
+
+### 5. Access the Application
+
+Once both the client and server are running, open your browser and visit:
+
+```
+http://localhost:3000
+```
+
+## Technologies Used
+
+* **Frontend**: React.js, Redux, Bootstrap
+* **Backend**: Node.js, Express.js, MongoDB
+* **Authentication**: JWT (JSON Web Tokens)
+
+## Contributing
+
+If you want to contribute to this project, feel free to fork the repository and submit a pull request with your improvements.
+
+## License
+
+This project is licensed under the MIT License.
+
+Developed by **Ishaan Jain**
