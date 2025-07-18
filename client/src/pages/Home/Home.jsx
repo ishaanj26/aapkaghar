@@ -19,11 +19,11 @@ export default function Home() {
             <FeaturedOffers/>
             <FeaturedLocation />
             <Services />
-            <BenefitSection />
+            <BenefitSection /> 
             <OurTeam/>
             <Blogs />
             <BrandsDefault/>
-            <Footer />
+            <Footer /> 
         </div>
     )
 }

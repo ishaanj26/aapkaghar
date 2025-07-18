@@ -24,6 +24,7 @@ const transporter = nodemailer.createTransport({
 })
 
 export default transporter
+
 mongoose.connect(`${process.env.MONGO}`).then(() => {
     console.log('Connected to MongoDB');
 }).catch((err) => {

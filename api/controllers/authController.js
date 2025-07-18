@@ -216,14 +216,9 @@ export const sendResetOTP = async (req, res) => {
             subject: 'Password Reset OTP',
             // text: `Your OTP for resetting the password is ${otp}. Use this OTP to proceed with reseeting the password`,
             html: PASSWORD_RESET_TEMPLATE.replace("{{otp}}", otp).replace("{{email}}", user.email)
-
-
         }
         await transporter.sendMail(mailOption)
         return res.json({ success: true, message: "OTP sent successfully" })
-
-
-        return res.json({ success: true, message: "Password reset OTP sent successfully" })
     } catch (e) {
         return res.json({ success: false, message: e.message })
     }

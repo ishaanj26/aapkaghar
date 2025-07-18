@@ -20,7 +20,7 @@ export default function Hero() {
       >Find your
         Perfect home!</h1>
       <p className="text-white max-w-[700px] text-center mt-4 md:mt-6 px-6 lg:text-[15px] text-[13px]">We are a real estate agency that will help you find the best residence you dream of,
-        let’s discuss for your dream house?
+        let's discuss for your dream house?
       </p>
       <div className="flex gap-6 md:gap-9 mt-8 md:mt-[100px] flex-wrap justify-center">
         <Button isActive={activeButton === 'For Rent'} variant="outlined" text="For Rent" onClick={() => handleButtonClick('For Rent')} />

@@ -31,11 +31,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} /> 
             {/* <Route path="/listing" element={<Listing />} /> */}
             <Route path="/contacts" element={<Contact />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/FAQs" element={<FAQ />} />
+           <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/FAQs" element={<FAQ />} /> 
             <Route path="/pricing-plans" element={<PricingPlan />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/agents" element={<Agent />} />
@@ -45,7 +45,7 @@ function App() {
             <Route path="/update-listing/:listingId" element={<UpdateListing />} />
             <Route path="/listing/:listingId" element={<Listing />} />
           </Routes>
-          <AIChatBox/>
+          {/* <AIChatBox/> */}
           <GoToTop />
         </AppContextProvider>
       </BrowserRouter>
