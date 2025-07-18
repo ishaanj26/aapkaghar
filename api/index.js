@@ -31,7 +31,7 @@ mongoose.connect(`${process.env.MONGO}`).then(() => {
     console.log(err)
 });
 
-const allowedOrigins = ['http://localhost:3001', 'http://localhost:3002']
+const allowedOrigins = ['http://localhost:3001', 'http://localhost:3002','https://aapkaghar.vercel.app/']
 
 app.use(express.json())
 app.use(cookieParser())
