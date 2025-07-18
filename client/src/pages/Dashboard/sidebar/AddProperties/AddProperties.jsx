@@ -148,7 +148,7 @@ export default function AddProperties() {
             console.log("SUBMITTING FORM DATA WITH IMAGES", updatedFormData);
             axios.defaults.withCredentials = true;
 
-            const { data } = await axios.post('http://localhost:3000/api/listing/create', {
+            const { data } = await axios.post('https://aapkaghar.onrender.com/api/listing/create', {
                 ...updatedFormData,
                 userRef: userData._id
             });

@@ -39,7 +39,7 @@ npm install
 Create a `.env` file in the `client` folder with the following variables:
 
 ```
-REACT_APP_URL='http://localhost:3000'
+REACT_APP_URL='https://aapkaghar.onrender.com'
 REACT_APP_SUPA_URL=your_supabase_url
 REACT_APP_SUPA_API_KEY=your_supabase_api_key
 REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
@@ -102,7 +102,7 @@ npm start
 Once both the client and server are running, open your browser and visit:
 
 ```
-http://localhost:3000
+https://aapkaghar.onrender.com
 ```
 
 ## Technologies Used

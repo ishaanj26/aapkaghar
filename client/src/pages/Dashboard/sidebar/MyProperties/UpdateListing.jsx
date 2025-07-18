@@ -58,7 +58,7 @@ export default function UpdateListing() {
         const fetchListing = async () => {
             setLoading(true)
             const listingId = params.listingId
-            const { data } = await axios.get(`http://localhost:3000/api/listing/get/${listingId}`,)
+            const { data } = await axios.get(`https://aapkaghar.onrender.com/api/listing/get/${listingId}`,)
             if (data.success) {
                 setFormData(data.listing)
                 // Update setFiles with image URLs from data.listing
@@ -173,7 +173,7 @@ export default function UpdateListing() {
         try {
             axios.defaults.withCredentials = true;
 
-            const { data } = await axios.post(`http://localhost:3000/api/listing/update/${params.listingId}`, { ...updatedFormData, userRef: userData._id })
+            const { data } = await axios.post(`https://aapkaghar.onrender.com/api/listing/update/${params.listingId}`, { ...updatedFormData, userRef: userData._id })
 
             if (data.success) {
                 navigate("/");

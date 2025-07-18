@@ -15,19 +15,19 @@ export default function Form() {
             return setError("Enter the complete information")
         }
 
-        // axios.post('http://localhost:3000/send-email', {
-        //     name,
-        //     email,
-        //     phone,
-        //     subject,
-        //     message,
-        // })
-        //     .then((response) => {
-        //         console.log(response.data);
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //     });
+        axios.post('https://aapkaghar.onrender.com/send-email', {
+            name,
+            email,
+            phone,
+            subject,
+            message,
+        })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
 
     };
     return (

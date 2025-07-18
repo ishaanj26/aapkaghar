@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 export const AppContent = createContext();
 
 export const AppContextProvider = (props) => {
-    // const backendURL = "http://localhost:3000"
+    // const backendURL = "https://aapkaghar.onrender.com"
     const backendURL = process.env.REACT_APP_URL
     // const supaURL = 'https://ifuxxfneemmedsgtconx.supabase.co'
     const supaURL = process.env.REACT_APP_SUPA_URL
